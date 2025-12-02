@@ -7,9 +7,11 @@ Imports:
     dplyr,
     fs,
     here,
+    quarto,
     readxl,
     snakecase,
     stringr,
+    tarchetypes,
     targets,
     tidyr
 Suggests: 
