@@ -1,5 +1,3 @@
-TODO: Add more to the title of your project here
-
 # AdvancedR3: Reproducible R development for data anaylsis
 
 This project will describe how to tailor your R data analysis towards
