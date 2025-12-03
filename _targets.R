@@ -60,5 +60,9 @@ list(
     command = readr::read_csv(file,
       show_col_types = FALSE
     )
+  ),
+  tar_quarto(
+    name = quarto_doc,
+    path = "docs/learning.qmd"
   )
 )
