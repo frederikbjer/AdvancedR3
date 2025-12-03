@@ -5,8 +5,6 @@ being feasible for collaborative and reproducible research
 
 # Brief description of folder and file contents
 
-The project will contain a folder for data, R and docs
-
 The following folders contain:
 
 -   `data/`: Data that is used for the project
@@ -15,10 +13,9 @@ The following folders contain:
 
 # Installing project R package dependencies
 
-If dependencies have been managed by using
-`usethis::use_package("packagename")` through the `DESCRIPTION` file,
-installing dependencies is as easy as opening the `AdvancedR3.Rproj`
-file and running this command in the console:
+Packages are managed through the `DESCRIPTION` file, installing
+dependencies is as easy as opening the `AdvancedR3.Rproj` file and
+running this command in the console:
 
 ```         
 # install.packages("pak")
