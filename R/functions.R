@@ -1,9 +1,9 @@
-  #' Create descriptive stats for each metabolite. Put it in a neat table
-  #'
-  #' @param data
-  #'
-  #' @returns
-  #' A data.frame/tibble
+#' Create descriptive stats for each metabolite. Put it in a neat table
+#'
+#' @param data
+#'
+#' @returns
+#' A data.frame/tibble
 create_table_descriptive_stats <- function(data) {
   descriptive_table <- data |>
     dplyr::group_by(metabolite) |>
@@ -14,13 +14,12 @@ create_table_descriptive_stats <- function(data) {
   return(descriptive_table)
 }
 
-  #' Visualises metabolite value distributions
-  #'
-  #' @param data
-  #'
-  #' @returns A plot object
+#' Visualises metabolite value distributions
+#'
+#' @param data
+#'
+#' @returns A plot object
 create_plot_distributions <- function(data) {
-
   data |>
     ggplot2::ggplot(
       ggplot2::aes(x = value)
@@ -57,3 +56,28 @@ preprocess <- function(data) {
       value = scale(value)
     )
 }
+
+
+#' Fit a glm model to the data
+#'
+#' @param data The lipidomics data
+#' @param model The model specified by class ~ value
+#'
+#' @returns
+#' @export
+#'
+#' @examples
+fit_model <- function(data, model) {
+  stats::glm(
+    formula = model,
+    data = data,
+    family = binomial
+  ) |>
+    broom::tidy(exponentiate = TRUE) |>
+    dplyr::mutate(
+      metabolite = unique(data$metabolite),
+      model = format(model),
+      .before = dplyr::everything()
+    )
+}
+
