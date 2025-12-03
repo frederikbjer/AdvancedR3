@@ -1,9 +1,12 @@
 name|type|data|command|depend|seed|path|time|size|bytes|format|repository|iteration|parent|children|seconds|warnings|error
 file|stem|c44b806f3841f535|09442fac263aded2|2c530c1562a7fbd1|1735323524|data/lipidomics.csv|t20418.8413296045s|s24277b|24277|file|local|vector|||0||
-clean|function|ce06151f5b2133d2
-create_table_descriptive_stats|function|19c5909cdd88e9b7
-create_plot_distributions|function|b411ca55e4bdd968
 lipidomics|stem|6d85720faf446486|e7a0b51b4c5fd316|8766f2d0e3176a68|-1498393010||t20425.5866681938s|s4137b|4137|rds|local|vector|||1.82||
 plot_distributions|stem|a1c490451e909b65|01ce942be37808d6|9e006b6ad2c0b24f|222080706||t20425.5866873616s|s270492b|270492|rds|local|vector|||1.4||
 table_descriptive_stats|stem|ef6095340ac76f94|34e33bc9eaef7fce|dad813f110227b97|1291134815||t20425.5866892962s|s416b|416|rds|local|vector|||0.01||
-quarto_doc|stem|a7368e5f77b6cf87|17ff11b3307356f6|80e68723c2703b32|1582462002|docs/learning.html*docs/learning.qmd|t20425.5868682214s|s26639b|26639|file|local|vector|||15.45||
+fit_model|function|3557a1398bcd1465
+preprocess|function|a3355eb18ba92f10
+clean|function|ce06151f5b2133d2
+create_table_descriptive_stats|function|19c5909cdd88e9b7
+create_plot_distributions|function|b411ca55e4bdd968
+create_model_results|function|71ac1b9d5c12ca4f
+quarto_doc|stem|7d792a73b5c0cc33|17ff11b3307356f6|80e68723c2703b32|1582462002|docs/learning.html*docs/learning.qmd|t20425.6338296871s|s26420b|26420|file|local|vector|||15.54||

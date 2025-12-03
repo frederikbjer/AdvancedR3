@@ -81,3 +81,14 @@ fit_model <- function(data, model) {
     )
 }
 
+#' Create model results
+#'
+#' @param data The lipidomcis data
+#'
+#' @returns coefficients for the fitted model
+create_model_results <- function(data) {
+  data |>
+    dplyr::filter(metabolite == "Cholesterol") |>
+    preprocess() |>
+    fit_model(class ~ value)
+}
