@@ -14,7 +14,7 @@ tar_option_set(
   #
   # Pipelines that take a long time to run may benefit from
   # optional distributed computing. To use this capability
-  # in tar_make(), supply a {crew} controller
+  # in tar_make(xkj ), supply a {crew} controller
   # as discussed at https://books.ropensci.org/targets/crew.html.
   # Choose a controller that suits your needs. For example, the following
   # sets a controller that scales up to a maximum of two workers
@@ -73,5 +73,9 @@ list(
   tar_target(
     name = plot_distributions,
     command = create_plot_distributions(lipidomics)
+  ),
+  tar_target(
+    name = model_results,
+    command = create_model_results(lipidomics)
   )
 )
