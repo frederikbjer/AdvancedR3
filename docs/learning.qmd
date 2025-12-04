@@ -29,9 +29,19 @@ tar_read(table_descriptive_stats) |>
 tar_read(plot_distributions)
 ```
 
+## Running multiple models
+
 ```{r}
+# lipidomics |>
+#  filter(metabolite == "Cholesterol") |>
+#  preprocess() |>
+#  fit_all_models()
 ```
 
 ```{r}
-create_model_results(lipidomics)
+lipidomics |>
+  group_split(metabolite) |>
+  map(preprocess) |>
+  map(fit_all_models) |>
+  list_rbind()
 ```

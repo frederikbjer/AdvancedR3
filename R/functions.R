@@ -50,7 +50,6 @@ clean <- function(data) {
 #' @returns A data.frame
 preprocess <- function(data) {
   data |>
-    dplyr::filter(metabolite == "Cholesterol") |>
     dplyr::mutate(
       class = as.factor(class),
       value = scale(value)
@@ -63,21 +62,20 @@ preprocess <- function(data) {
 #' @param data The lipidomics data
 #' @param model The model specified by class ~ value
 #'
-#' @returns
-#' @export
-#'
-#' @examples
+#' @returns the model
+
 fit_model <- function(data, model) {
-  stats::glm(
+  glm(
     formula = model,
     data = data,
     family = binomial
   ) |>
     broom::tidy(exponentiate = TRUE) |>
+    # Converts ("formats") the formula to a string.
     dplyr::mutate(
       metabolite = unique(data$metabolite),
       model = format(model),
-      .before = dplyr::everything()
+      .before = tidyselect::everything()
     )
 }
 
@@ -91,4 +89,18 @@ create_model_results <- function(data) {
     dplyr::filter(metabolite == "Cholesterol") |>
     preprocess() |>
     fit_model(class ~ value)
+}
+
+#' Fit all models to a given data.frame
+#'
+#' @param data The data frame to fit the models to
+#'
+#' @returns A data frame with results from all models.
+fit_all_models <- function(data) {
+  list(
+    class ~ value,
+    class ~ value + gender + age
+  ) |>
+    purrr::map(\(model) fit_model(data, model = model)) |>
+    purrr::list_rbind()
 }
