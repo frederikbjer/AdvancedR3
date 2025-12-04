@@ -38,10 +38,11 @@ tar_read(plot_distributions)
 #  fit_all_models()
 ```
 
+## Appendix
+
 ```{r}
-lipidomics |>
-  group_split(metabolite) |>
-  map(preprocess) |>
-  map(fit_all_models) |>
-  list_rbind()
+tar_read(model_results) |>
+  knitr::kable(
+    caption = "Fitted models for all metabolites"
+  )
 ```

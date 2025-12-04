@@ -79,18 +79,6 @@ fit_model <- function(data, model) {
     )
 }
 
-#' Create model results
-#'
-#' @param data The lipidomcis data
-#'
-#' @returns coefficients for the fitted model
-create_model_results <- function(data) {
-  data |>
-    dplyr::filter(metabolite == "Cholesterol") |>
-    preprocess() |>
-    fit_model(class ~ value)
-}
-
 #' Fit all models to a given data.frame
 #'
 #' @param data The data frame to fit the models to
@@ -104,3 +92,17 @@ fit_all_models <- function(data) {
     purrr::map(\(model) fit_model(data, model = model)) |>
     purrr::list_rbind()
 }
+
+#' Create model results
+#'
+#' @param data The lipidomcis data
+#'
+#' @returns coefficients for the fitted model
+create_model_results <- function(data, metabolite) {
+  data |>
+    dplyr::group_split(metabolite) |>
+    purrr::map(preprocess) |>
+    purrr::map(fit_all_models) |>
+    purrr::list_rbind()
+}
+
